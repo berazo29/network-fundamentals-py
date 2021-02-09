@@ -7,6 +7,14 @@ parser = argparse.ArgumentParser(description="""This is a very basic client prog
 parser.add_argument('port', type=int, help='This is the port to connect to the server on', action='store')
 args = parser.parse_args(argv[1:])
 
+# load the text file as dictionary
+filename = 'Pairs.txt'
+index_pairs = {}
+with open(filename) as f:
+    for line in f:
+        (key, val) = line.strip().split(':')
+        index_pairs[key] = val
+print(index_pairs)
 try:
     ss = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     print("[S]: Server socket created\ninfo: {}".format(ss))
@@ -33,10 +41,21 @@ with csockid:
     while True:
         data = csockid.recv(512)
         data = data.decode('utf-8')
-        print(data)
-        if not data:
-            break
-        csockid.sendall(data.encode('utf-8'))
+
+        try:
+            if index_pairs[data]:
+                print('[C]: {}'.format(data))
+                print('[S]: {}'.format(index_pairs[data]))
+                csockid.sendall(index_pairs[data].encode('utf-8'))
+
+        except:
+            if not data:
+                break
+            answer = 'NOT FOUND'
+            print('[C]: {}'.format(data))
+            print('[S]: {}'.format(answer))
+            csockid.sendall(answer.encode('utf-8'))
 
 ss.close()
 exit()
+
