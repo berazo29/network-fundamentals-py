@@ -3,8 +3,8 @@ from sys import argv
 import socket
 
 
-parser = argparse.ArgumentParser(description="""This is a very basic client program""")
-parser.add_argument('port', type=int, help='This is the port to connect to the server on', action='store')
+parser = argparse.ArgumentParser(description="""This is a very basic server program""")
+parser.add_argument('port', type=int, help='This is the server port to listen', action='store')
 args = parser.parse_args(argv[1:])
 
 # load the text file as dictionary
@@ -57,7 +57,6 @@ with csockid:
             print('[C]: {}'.format(data))
             print('[S]: {}'.format(answer))
             csockid.sendall(answer.encode('utf-8'))
-
 ss.close()
 exit()
 
