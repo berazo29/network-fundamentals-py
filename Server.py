@@ -14,10 +14,12 @@ with open(filename) as f:
     for line in f:
         (key, val) = line.strip().split(':')
         index_pairs[key] = val
-print(index_pairs)
+
+# Create a new socket
 try:
     ss = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    print("[S]: Server socket created\ninfo: {}".format(ss))
+    print("[S]: Server socket created")
+
 except socket.error as error:
     print("Server socket error: {}".format(error))
     exit()
