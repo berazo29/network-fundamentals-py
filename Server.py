@@ -4,13 +4,14 @@ import socket
 
 
 parser = argparse.ArgumentParser(description="""This is a very basic server program""")
+parser.add_argument('-f', type=str, help='File to read the pairs words', default='Pairs.txt', action='store', dest='in_file')
 parser.add_argument('port', type=int, help='This is the server port to listen', action='store')
 args = parser.parse_args(argv[1:])
 
 # load the text file as dictionary
-filename = 'Pairs.txt'
+
 index_pairs = {}
-with open(filename) as f:
+with open(args.in_file) as f:
     for line in f:
         (key, val) = line.strip().split(':')
         index_pairs[key] = val
