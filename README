@@ -1,0 +1,27 @@
+README file
+-----------
+
+1. Bryan Erazo bfe4
+2. The code does not have any known issues. However, do not use extra lines in the end of the seding file, it may close prematurely.
+3. I spent around 3 hours in total. 
+     1 hour coding the server 
+     1 hour fixing bugs and formating the data, and printing correctly the format requiered. 
+     1 hour testing with different inputs, and in different Rutgers computers. 
+   I have some trouble detecting the connection from the users, and sending the rigth information. 
+   I solved by using a dictictory and excepting when the key value does not exits in the dictionary.  
+
+How to use this software
+------------------------
+
+By default, it will use the Pairs.txt file 
+usage: python Server.py <Hostname or Address> <PORT>
+
+If you want to insert a different file, then use as follow: 
+usage: python Server.py <Hostname or IP Address> <PORT> -f <FILENAME>
+
+Folder contains
+--------------
+Project_0.tar
+ |-Server
+ |-- Server.py
+ |-- README 
